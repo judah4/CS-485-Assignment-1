@@ -16,15 +16,16 @@ public class InnerCollideGrab : MonoBehaviour
 		
 	}
 
-    void OnTriggerEnter(Collider other) 
+    void OnCollisionEnter(Collision other) 
     {
 
         Debug.Log("Collide" + other.gameObject.name);
         
         if (other.gameObject.CompareTag ("Pick Up"))
         {
-            other.transform.parent = PlayerControl.transform;
-
+            
+            PlayerControl.AddPickup(other.collider);
+            
         }
 
     }

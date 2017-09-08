@@ -8,6 +8,8 @@ public class PlayerControl : MonoBehaviour {
 	public float speed;
     public float JumpPower = 10;
 
+    public Transform Sphere;
+
     private Rigidbody rb;
 
     public event Action<int> OnScore;
@@ -23,8 +25,9 @@ public class PlayerControl : MonoBehaviour {
         float moveVertical = Input.GetAxis ("Vertical");
 
         Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
+        var torque = new Vector3(moveVertical,0,-moveHorizontal) * speed / 2;
         rb.AddForce (movement * (speed * rb.mass));
+        rb.AddTorque(torque);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -33,13 +36,28 @@ public class PlayerControl : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            MassAndSizeIncrease();
+            MassAndSizeIncrease(1);
         }
     }
 
-    void MassAndSizeIncrease()
+    public void AddPickup(Collider collider)
     {
-        rb.mass++;
-        transform.localScale = transform.localScale + Vector3.one;
+        if (collider.attachedRigidbody != null)
+        {
+            if(collider.attachedRigidbody.mass / rb.mass > .6f)
+                return;
+
+            collider.tag = "Inner";
+            collider.transform.parent = transform;
+        
+            MassAndSizeIncrease(collider.attachedRigidbody.mass);
+            Destroy(collider.attachedRigidbody);
+        }
+    }
+
+    void MassAndSizeIncrease(float massAdd)
+    {
+        rb.mass+= massAdd;
+        //Sphere.localScale = Sphere.localScale + (massAdd *Vector3.one / 2);
     }
 }
