@@ -37,7 +37,7 @@ namespace Waves.WaveOcean
             }
             else
             {
-                return 0f;
+                return transform.position.y;
             }
 
         }

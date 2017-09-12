@@ -14,7 +14,7 @@ namespace Waves.WaveOcean
 
         //Water square data
         private float squareWidth = 800f;
-        private float innerSquareResolution = 25f;
+        private float innerSquareResolution = 5f;
         private float outerSquareResolution = 25f;
 
         //The list with all water mesh squares == the entire ocean we can see

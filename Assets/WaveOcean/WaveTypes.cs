@@ -28,8 +28,8 @@ namespace Waves.WaveOcean
 
             //y += (Mathf.Sin((timeSinceStart * speed + waveType) / waveDistance) * scale;
 
-            y = ((Mathf.Sin(x * 1.0f + timeSinceStart * 1.0f * speed) + Mathf.Sin(x * 2.3f + timeSinceStart * 1.5f * speed) + Mathf.Sin(x * 3.3f + timeSinceStart * 0.4f * speed)) / waveDistance) *scale;
-            y +=((Mathf.Sin(z * 1.0f + timeSinceStart * 1.0f * speed) + Mathf.Sin(z * 2.3f + timeSinceStart * 1.5f * speed) + Mathf.Sin(z * 3.3f + timeSinceStart * 0.4f * speed)) / waveDistance) *scale;
+            y = (SinX(x, 1.0f, 1.0f, speed, waveDistance, timeSinceStart) /*+ Mathf.Sin(x * 2.3f + timeSinceStart * 1.5f * speed)*/ + SinX(x, 3.3f, 0.4f , speed, waveDistance, timeSinceStart)) *scale;
+            y += (SinX(z, 2.0f, 1.5f, speed, waveDistance, timeSinceStart) /*+ Mathf.Sin(x * 2.3f + timeSinceStart * 1.5f * speed)*/ + SinX(z, 1.3f, 1f , speed, waveDistance, timeSinceStart)) *scale;
             //Add noise to make it more realistic
             //y += Mathf.PerlinNoise(x + noiseWalk, y + Mathf.Sin(timeSinceStart * 0.1f)) * noiseStrength;
 
@@ -37,5 +37,15 @@ namespace Waves.WaveOcean
 
             return y;
 	    }
+
+        static float SinX(float x,
+            float adjust,
+            float timeAdjust,
+            float speed,
+            float waveDistance,
+            float timeSinceStart)
+        {
+            return Mathf.Sin(x * adjust / waveDistance + timeSinceStart * timeAdjust * speed);
+        }
     }
 }
