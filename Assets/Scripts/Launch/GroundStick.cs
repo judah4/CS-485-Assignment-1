@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundStick : MonoBehaviour {
+public class GroundStick : MonoBehaviour
+{
+    [SerializeField]
+    private GameManager _gameManager;
+
+    
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +25,12 @@ public class GroundStick : MonoBehaviour {
             return;
 
         collision.rigidbody.drag = 100;
+
+        if (collision.gameObject.tag == "Player")
+        {
+            _gameManager.Player.SoundManager.PlayClip(1);
+            _gameManager.ChangeState(GameState.End);
+        }
         
     }
 }

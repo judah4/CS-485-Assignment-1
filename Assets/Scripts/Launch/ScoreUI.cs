@@ -6,19 +6,35 @@ using UnityEngine.UI;
 public class ScoreUI : MonoBehaviour
 {
     public PlayerMove Player;
+    public GameManager GameManager;
 
-    public int Score = 0;
+    
     public Text ScoreText;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    GameManager.OnChange += OnChange;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    Score = (int)Player.transform.position.z;
-	    ScoreText.text = "Distance: " + Score.ToString().PadLeft(6, '0');
+	    if (GameManager.GameState == GameState.Play)
+	    {
+	        GameManager.Score = (int) Player.transform.position.z;
+	        ScoreText.text = "Distance: " + GameManager.Score.ToString().PadLeft(6, '0');
+	    }
 	}
+
+    void OnChange(GameState state)
+    {
+        if (state == GameState.End)
+        {
+            //Show game over
+            Debug.Log("Game Over!");
+        }
+
+        
+    }
 }

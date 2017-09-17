@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RollABall/Scenes/RollABallScene.unity
     guid: a807e9f460e8734429d3967704ebe043
+  - enabled: 1
+    path: Assets/Scenes/DistanceRunner.unity
+    guid: b7c111c7a2913744381cae452513548f
+  - enabled: 1
+    path: Assets/Scenes/UpgradeScene.unity
+    guid: 1beb53544e120174caffc8b5fcf7c0a8

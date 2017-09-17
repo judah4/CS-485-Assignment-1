@@ -5,8 +5,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
 
     public int jumpCount = 1;
     public int maxJump = 1;
@@ -16,11 +15,14 @@ public class PlayerMove : MonoBehaviour
     public Camera cam;
     public MouseLook mouseLook = new MouseLook();
 
-	// Use this for initialization
-	void Start () {
-		mouseLook.Init (transform, cam.transform);
+    public SoundManager SoundManager;
 
-	}
+    // Use this for initialization
+    void Start()
+    {
+        mouseLook.Init(transform, cam.transform);
+
+    }
 
     private void Update()
     {
@@ -28,16 +30,18 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-	void FixedUpdate () {
-        
-		var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    void FixedUpdate()
+    {
+        GroundCheck();
+        var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         _rigidbody.AddForce(transform.TransformDirection(input) * MoveStrength);
 
-	    if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
-	    {
-	        jumpCount--;
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        {
+            jumpCount--;
             _rigidbody.AddForce(Vector3.up * JumpStrength, ForceMode.Impulse);
-	    }
+            SoundManager.PlayClip(0);
+        }
     }
 
     private void RotateView()
@@ -48,12 +52,22 @@ public class PlayerMove : MonoBehaviour
         // get the rotation before it's changed
         float oldYRotation = transform.eulerAngles.y;
 
-        mouseLook.LookRotation (transform, cam.transform);
+        mouseLook.LookRotation(transform, cam.transform);
 
-            // Rotate the rigidbody velocity to match the new direction that the character is looking
-            //Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
-            //_rigidbody.velocity = velRotation*_rigidbody.velocity;
-            
+        // Rotate the rigidbody velocity to match the new direction that the character is looking
+        //Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
+        //_rigidbody.velocity = velRotation*_rigidbody.velocity;
+
     }
 
+    private void GroundCheck()
+    {
+        RaycastHit hitInfo;
+        if (Physics.SphereCast(transform.position, 1 * (1.0f - 0.01f), Vector3.down, out hitInfo,
+            ((2 / 2f) - 1) + 0.01f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        {
+            jumpCount = maxJump;
+        }
+
+    }
 }

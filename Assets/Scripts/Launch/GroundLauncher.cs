@@ -19,19 +19,19 @@ public class GroundLauncher : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
     } 
 
     protected void OnTriggerStay(Collider other)
     {
-        Debug.Log("Stay:" +other.gameObject.name);
+        //Debug.Log("Stay:" +other.gameObject.name);
 
         if(other.attachedRigidbody == null)
             return;
 
-        var forces = transform.forward.normalized * 3;
+        var forces = (transform.forward.normalized * 3);
         Debug.Log(forces);
-
+        forces = transform.TransformDirection(forces);
         other.attachedRigidbody.AddForce(forces);
     } 
 
