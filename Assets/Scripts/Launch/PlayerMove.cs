@@ -32,6 +32,13 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         RotateView();
+
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        {
+            jumpCount--;
+            _rigidbody.AddForce(Vector3.up * JumpStrength, ForceMode.Impulse);
+            SoundManager.PlayClip(0);
+        }
     }
 
     // Update is called once per frame
@@ -41,12 +48,7 @@ public class PlayerMove : MonoBehaviour
         var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         _rigidbody.AddForce(transform.TransformDirection(input) * (MoveStrength + SpeedMulti));
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
-        {
-            jumpCount--;
-            _rigidbody.AddForce(Vector3.up * JumpStrength, ForceMode.Impulse);
-            SoundManager.PlayClip(0);
-        }
+       
     }
 
     private void RotateView()

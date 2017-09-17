@@ -490,6 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436441368}
   - component: {fileID: 436441367}
+  - component: {fileID: 436441369}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -512,6 +513,8 @@ MonoBehaviour:
   Player: {fileID: 1896631858}
   Score: 0
   Money: 0
+  Grounds:
+  - {fileID: 1932984982}
 --- !u!4 &436441368
 Transform:
   m_ObjectHideFlags: 0
@@ -525,6 +528,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &436441369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 436441366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729752f357aec8e459ffeb1a2f83ecd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CenterGround: {fileID: 1932984982}
+  GameManager: {fileID: 436441367}
 --- !u!1 &439150746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1031,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2445,6 +2461,7 @@ MonoBehaviour:
   maxJump: 1
   JumpStrength: 10
   MoveStrength: 10
+  SpeedMulti: 3
   cam: {fileID: 819310581}
   mouseLook:
     XSensitivity: 2
