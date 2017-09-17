@@ -196,7 +196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cost: $200'
+  m_Text: 'Cost: <color=red>$200</color>'
 --- !u!114 &114490819785869016
 MonoBehaviour:
   m_ObjectHideFlags: 1

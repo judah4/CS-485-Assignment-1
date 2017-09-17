@@ -16,6 +16,7 @@ public class UpgradeRow : MonoBehaviour
     public Text NameText;
     public string UpgradeName;
     public event Action<UpgradeRow> OnUpgrade;
+    public UpgradePanel UpgradePanel;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,18 @@ public class UpgradeRow : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    UpgradeCostText.text = "Cost: $" + Cost();
+
+	    var cost = "Cost: ";
+	    if (Cost() > UpgradePanel.Money)
+	    {
+	        cost += "<color=red>";
+	    }
+	    cost += "$" + Cost();
+        if (Cost() > UpgradePanel.Money)
+	    {
+	        cost += "</color>";
+	    }
+	    UpgradeCostText.text = cost;
 	    LevelText.text = "Level: " + Level;
 	}
 
