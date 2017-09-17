@@ -20,7 +20,7 @@ public class PlatformSizer : MonoBehaviour
 	void Update () {
 		transform.localScale = new Vector3(1, 1, Level + SizeAdd);
         transform.localPosition = Vector3.forward * -(Level+SizeAdd)*offset;
-	    StartPlatform.transform.position = Vector3.forward * -(Level + SizeAdd ) * 2 * offset + Vector3.up;
+	    StartPlatform.transform.localPosition = Vector3.forward * -(Level + SizeAdd ) * 2 * offset;
 	    if (lastSize != Level)
 	    {
 	        lastSize = Level;

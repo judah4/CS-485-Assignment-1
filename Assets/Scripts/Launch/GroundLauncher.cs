@@ -6,10 +6,13 @@ public class GroundLauncher : MonoBehaviour
 {
 
     public float force = 3;
+    private float startingForce;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    startingForce = force;
+	    force = PlayerPrefs.GetInt("Launch Speed", 1) * startingForce;
 	}
 	
 	// Update is called once per frame

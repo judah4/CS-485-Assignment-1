@@ -43,4 +43,9 @@ public class GameOverUI : MonoBehaviour {
     {
         SceneManager.LoadScene(NextSceneName);
     }
+
+    public void Relaunch()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

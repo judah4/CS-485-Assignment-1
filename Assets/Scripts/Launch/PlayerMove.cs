@@ -21,7 +21,8 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         mouseLook.Init(transform, cam.transform);
-
+        maxJump = PlayerPrefs.GetInt("Jump Boosts", 1);
+        jumpCount = maxJump;
     }
 
     private void Update()
