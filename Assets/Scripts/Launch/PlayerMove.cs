@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     public int maxJump = 1;
     public float JumpStrength = 10;
     public float MoveStrength = 10;
+    public float SpeedMulti = 3;
 
     public Camera cam;
     public MouseLook mouseLook = new MouseLook();
@@ -23,6 +24,9 @@ public class PlayerMove : MonoBehaviour
         mouseLook.Init(transform, cam.transform);
         maxJump = PlayerPrefs.GetInt("Jump Boosts", 1);
         jumpCount = maxJump;
+
+        SpeedMulti *= PlayerPrefs.GetInt("Run Speed", 1);
+
     }
 
     private void Update()
@@ -35,7 +39,7 @@ public class PlayerMove : MonoBehaviour
     {
         GroundCheck();
         var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        _rigidbody.AddForce(transform.TransformDirection(input) * MoveStrength);
+        _rigidbody.AddForce(transform.TransformDirection(input) * (MoveStrength + SpeedMulti));
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {

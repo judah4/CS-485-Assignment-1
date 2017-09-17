@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(sceneName);
     }
 
