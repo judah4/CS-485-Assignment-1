@@ -158,12 +158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 1
-  UpgradeCostMulti: 1.5
-  BaseStartCost: 200
+  UpgradeCostMulti: 2.7
+  BaseStartCost: 250
   UpgradeCostText: {fileID: 114469831032585344}
   LevelText: {fileID: 114777891011268840}
   NameText: {fileID: 114071040510601430}
   UpgradeName: PlatLength
+  UpgradePanel: {fileID: 0}
 --- !u!114 &114469831032585344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -378,7 +379,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280527946494522}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

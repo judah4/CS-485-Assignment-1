@@ -314,6 +314,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114407346983014934, guid: 5b289969392715246852d2a5cfc8fce6,
+        type: 2}
+      propertyPath: BaseStartCost
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407346983014934, guid: 5b289969392715246852d2a5cfc8fce6,
+        type: 2}
+      propertyPath: UpgradeCostMulti
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b289969392715246852d2a5cfc8fce6, type: 2}
   m_IsPrefabParent: 0
@@ -1084,6 +1094,11 @@ Prefab:
         type: 2}
       propertyPath: UpgradeCostMulti
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114407346983014934, guid: 5b289969392715246852d2a5cfc8fce6,
+        type: 2}
+      propertyPath: BaseStartCost
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b289969392715246852d2a5cfc8fce6, type: 2}
@@ -1983,7 +1998,7 @@ Prefab:
     - target: {fileID: 114407346983014934, guid: 5b289969392715246852d2a5cfc8fce6,
         type: 2}
       propertyPath: UpgradeCostMulti
-      value: 1.7
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 114407346983014934, guid: 5b289969392715246852d2a5cfc8fce6,
         type: 2}
