@@ -13,13 +13,28 @@ public class GroundStick : MonoBehaviour
     //}
 
     [SerializeField]
-    private GameManager _gameManager;
+    public GameManager GameManager;
+
+    public List<GameObject> Prefabs = new List<GameObject>();
+    public float Size = 1000;
+    public float Distribution = 20;
 
     //public GroundStick[] Neighbors = new GroundStick[4];
 
 	// Use this for initialization
+
 	void Start () {
-		
+        for (int cntY = 0; cntY < Distribution; cntY++)
+	    {
+            for (int cntX = 0; cntX < Distribution; cntX++)
+            {
+                var spread = Size / Distribution;
+                var groundObj = Instantiate(Prefabs[Random.Range(0, Prefabs.Count)]);
+                groundObj.transform.position = transform.position + new Vector3((Size/2) - cntX * spread + Random.Range(-25,25), 0, (Size/2) -  cntY * spread + Random.Range(-25,25));
+                groundObj.transform.rotation = Quaternion.Euler(0, Random.Range(0,360), 0);
+
+            }
+	    }
 	}
 	
 	// Update is called once per frame
@@ -58,8 +73,8 @@ public class GroundStick : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            _gameManager.Player.SoundManager.PlayClip(1);
-            _gameManager.ChangeState(GameState.End);
+            GameManager.Player.SoundManager.PlayClip(1);
+            GameManager.ChangeState(GameState.End);
         }
         
     }

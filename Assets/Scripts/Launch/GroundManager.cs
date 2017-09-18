@@ -7,6 +7,7 @@ public class GroundManager : MonoBehaviour
 
     public Dictionary<Vector3, GroundStick> Grounds = new Dictionary<Vector3, GroundStick>();
     public GroundStick CenterGround;
+    public GroundStick GroundPrefab;
     public GameManager GameManager;
 
 	// Use this for initialization
@@ -21,7 +22,7 @@ public class GroundManager : MonoBehaviour
         var zPos = (int)(Mathf.RoundToInt(playerPos.z / 1000)) * 1000;
 
 	    var loadPos = new Vector3(xPos, 0, zPos);
-        Debug.Log("World loader: " +loadPos);
+        //Debug.Log("World loader: " +loadPos);
 	    if (!Grounds.ContainsKey(new Vector3(xPos, 0, zPos)))
 	    {
 	        LoadGround(loadPos);
@@ -56,7 +57,8 @@ public class GroundManager : MonoBehaviour
 
     private void LoadGround(Vector3 loadPos)
     {
-        var newGround = Instantiate(Grounds[Vector3.zero]);
+        var newGround = Instantiate(GroundPrefab);
+        newGround.GameManager = GameManager;
         newGround.transform.position = loadPos;
         Grounds.Add(loadPos, newGround);
     }
