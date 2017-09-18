@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public float JumpStrength = 10;
     public float MoveStrength = 10;
     public float SpeedMulti = 3;
+    private float jumpTimer = -1;
 
     public Camera cam;
     public MouseLook mouseLook = new MouseLook();
@@ -33,8 +34,12 @@ public class PlayerMove : MonoBehaviour
     {
         RotateView();
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        if (jumpTimer > 0)
+            jumpTimer -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0 && jumpTimer <= 0)
         {
+            jumpTimer = 0.25f;
             jumpCount--;
             _rigidbody.AddForce(Vector3.up * JumpStrength, ForceMode.Impulse);
             SoundManager.PlayClip(0);
@@ -57,7 +62,7 @@ public class PlayerMove : MonoBehaviour
         if (Mathf.Abs(Time.timeScale) < float.Epsilon) return;
 
         // get the rotation before it's changed
-        float oldYRotation = transform.eulerAngles.y;
+        //float oldYRotation = transform.eulerAngles.y;
 
         mouseLook.LookRotation(transform, cam.transform);
 
@@ -73,7 +78,10 @@ public class PlayerMove : MonoBehaviour
         if (Physics.SphereCast(transform.position, 1 * (1.0f - 0.01f), Vector3.down, out hitInfo,
             ((2 / 2f) - 1) + 0.01f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
         {
-            jumpCount = maxJump;
+            if (jumpTimer <= 0)
+            {
+                jumpCount = maxJump;
+            }
         }
 
     }

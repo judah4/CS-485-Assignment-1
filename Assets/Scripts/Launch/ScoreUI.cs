@@ -7,6 +7,7 @@ public class ScoreUI : MonoBehaviour
 {
     public PlayerMove Player;
     public GameManager GameManager;
+    public Text JumpText;
 
     
     public Text ScoreText;
@@ -25,6 +26,8 @@ public class ScoreUI : MonoBehaviour
 	        GameManager.Score = (int) Player.transform.position.z;
 	        ScoreText.text = "Distance: " + GameManager.Score.ToString().PadLeft(6, '0');
 	    }
+
+	    JumpText.text = Player.jumpCount + "/" + Player.maxJump;
 	}
 
     void OnChange(GameState state)
